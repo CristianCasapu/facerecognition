@@ -182,7 +182,7 @@ class Version0992Date20260731130000 extends SimpleMigrationStep {
 
 		$flip = $this->connection->getQueryBuilder();
 		return $flip->update('facerecog_faces')
-			->set('person', $flip->createFunction('-' . $flip->getColumnName('person')))
+			->set('person', $flip->createFunction('ABS(' . $flip->getColumnName('person') . ')'))
 			->where($flip->expr()->lt('person', $flip->createNamedParameter(0, IQueryBuilder::PARAM_INT)))
 			->executeStatement();
 	}
